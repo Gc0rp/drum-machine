@@ -1,0 +1,8 @@
+The volume slider : 
+
+https://getbootstrap.com/docs/4.1/components/forms/#range
+
+
+On/Off buttons and heater/piano buttons
+
+https://getbootstrap.com/docs/3.4/javascript/#buttons-checkbox-radio
