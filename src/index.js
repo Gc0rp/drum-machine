@@ -2,21 +2,23 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createGlobalStyle } from 'styled-components';
 
+import {createGlobalStyle} from 'styled-components';
 import store from './store';
-import App from './components/App';
-import reset from './constants/css/reset';
+import DrumMachine from './components/drumMachine';
+import Globalstylesheet from './constants/css/globalStyleSheet';
 
-const GlobalStyle = createGlobalStyle`${reset}`;
+const GlobalStyle = createGlobalStyle`${Globalstylesheet}`;
 
 ReactDOM.render(
     <BrowserRouter>
         <Fragment>
+            <GlobalStyle />  
             <Provider store={store}>
-                <App />
+                <div className="row">
+                    <DrumMachine />
+                </div>
             </Provider>
-            <GlobalStyle />
         </Fragment>
     </BrowserRouter>,
     document.getElementById('root')
