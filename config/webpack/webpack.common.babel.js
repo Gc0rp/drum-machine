@@ -7,7 +7,7 @@ import rules from './rules';
 module.exports = {
     entry: paths.entryPath,
     module: {
-        rules
+        rules 
     },
     resolve: {
         modules: ['src', 'node_modules'],
