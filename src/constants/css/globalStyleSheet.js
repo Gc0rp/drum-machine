@@ -3,10 +3,10 @@ const GlobalStyleSheet = `
     *{
         margin: 0;
         padding: 0;
-        border-box: box-sizing;
+        box-sizing: border-box;
     }
     body{
-        background-color: #2C2C54;
+        background-color: #A40E4C;
     }
     .container-fluid {
         width: 75%;
@@ -17,7 +17,7 @@ const GlobalStyleSheet = `
     .pad-button {
         width: 80px;
         height: 80px;
-        background-color: #ACC3A6;
+        background-color: #2C2C54;
         color: white;
         font-weight: bold;
         margin: 5px;
@@ -25,11 +25,25 @@ const GlobalStyleSheet = `
 
     .row{
         border: 1px solid blue;
-        text-align: center;
+        justify-content: center;
     }
 
     .col-sm-2{
         margin: 5px;
+    }
+
+    .col-md-12{
+        text-align: center;
+    }
+
+    .btn-primary{
+        background-color: #2C2C54;
+        border: 1px solid #2C2C54;
+    }
+
+    .btn-primary:hover{
+        background-color: #F49D6E;
+        border: 1px solid #F49D6E;
     }
 
 `;

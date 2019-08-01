@@ -4,6 +4,10 @@
     "description": "⚡ The most simple & robust boilerplate for your React projects.",
     "main": "src/index.js",
     "husky": {
+        "precommit": "yarn run lint && yarn test --no-verify",
+        "prepush": "yarn run lint"
+    },
+    "scripts": {
         "start": "cross-env NODE_ENV=development webpack-dev-server --open",
         "build": "cross-env NODE_ENV=production webpack",
         "lint": "eslint ./src/**/**.js",
@@ -11,9 +15,7 @@
         "test": "jest",
         "test:watch": "yarn run test --watch",
         "test:cover": "yarn run test --coverage",
-        "cypress:open": "cypress open",
-        "precommit": "yarn run lint && yarn test --no-verify",
-        "prepush": "yarn run lint"
+        "cypress:open": "cypress open"
     },
     "keywords": [
         "react",
@@ -55,7 +57,7 @@
         "clean-webpack-plugin": "^1.0.1",
         "core-js": "3",
         "css-loader": "^2.1.0",
-        "cypress": "^3.1.4",
+        "cypress": "^3.4.1",
         "eslint": "^5.12.1",
         "eslint-config-airbnb": "^17.1.0",
         "eslint-config-prettier": "^4.0.0",

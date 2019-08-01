@@ -7,6 +7,7 @@ import {createGlobalStyle} from 'styled-components';
 import store from './store';
 import DrumMachine from './components/drumMachine';
 import Globalstylesheet from './constants/css/globalStyleSheet';
+import Settings from './components/settings';
 
 const GlobalStyle = createGlobalStyle`${Globalstylesheet}`;
 
@@ -17,6 +18,7 @@ ReactDOM.render(
             <Provider store={store}>
                 <div className="row">
                     <DrumMachine />
+                    <Settings />
                 </div>
             </Provider>
         </Fragment>

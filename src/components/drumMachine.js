@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import kick from '../audio/kick.mp3';
+import clap from '../audio/clap.wav';
+import snare from '../audio/snare.wav';
 
 const Column = styled.div`
     border: 1px solid red;
@@ -21,15 +24,20 @@ class drumMachine extends React.Component {
         document.addEventListener("keydown", this.handleKeyPress);
     }
     
-
     handleKeyPress(event){
-        if(event.keyCode == 81 || event.value == "Q"){
-            const k = document.getElementById("kick");
-            k.play();
+        let audio = new Audio();
+
+        if(event.keyCode == 81 || arguments[1] == "Q"){
+            audio.src = kick;
+        }  else if (event.keyCode == 87 || arguments[1] == "W") {
+            audio.src = clap;
+        } else if (event.keyCode == 69 || arguments[1] == "E") {
+            audio.src = snare;
         }
+        
+
+        audio.play();
     }
-
-
 
     render() {
     
@@ -38,9 +46,8 @@ class drumMachine extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         <button type="button" className="btn pad-button" onClick = {event => this.handleKeyPress(event, "Q")} >Q</button>
-                        <audio id="kick" style={{display: "none"}} src={kick}></audio>
-                        <button type="button" className="btn pad-button">W</button>
-                        <button type="button" className="btn pad-button">E</button>
+                        <button type="button" className="btn pad-button" onClick = {event => this.handleKeyPress(event, "W")}>W</button>
+                        <button type="button" className="btn pad-button" onClick = {event => this.handleKeyPress(event, "E")}>E</button>
                     </div>
                 </div>
 
