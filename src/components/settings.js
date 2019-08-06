@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 const Column = styled.div`
     border: 1px solid red;
     text-align: center;
@@ -26,14 +29,13 @@ class Settings extends React.Component {
 
         };
 
-        this.test = this.test.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    test(){
-        const turnOn = {
-            type: 'TURNON'
-        };
-        this.props.store.dispatch(turnOn);
+    handleClick(){
+        console.log(this.props);
+
+        this.props.turnPadOff();
     }
 
     render(){
@@ -43,11 +45,11 @@ class Settings extends React.Component {
                     <div className="col-md-12">
                         <div className="btn-group">
                             <label className="btn btn-primary">
-                                <input type="radio" name="options" id="turnOn" onClick={this.test}/> On 
+                                <input type="radio" name="options" id="turnOn" onClick={this.handleClick}/> On 
                             </label>   
 
                             <label className="btn btn-primary">
-                                <input type="radio" name="options" id="turnOff" /> Off 
+                                <input type="radio" name="options" id="turnOff" onClick={this.handleClick}/> Off 
                             </label>   
                     
                         </div>
@@ -91,4 +93,17 @@ class Settings extends React.Component {
 
 }
 
-export default Settings;
+const connectStateToProps = (state) => {
+    return {
+        padOn: state.padOn
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        turnPadOff: () => {
+            dispatch({type: 'TURNOFF'});
+        }
+    };
+};
+export default connect(connectStateToProps, mapDispatchToProps)(Settings);

@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
 import kick from '../audio/kick.mp3';
 import clap from '../audio/clap.wav';
 import snare from '../audio/snare.wav';
+
 
 const Column = styled.div`
     border: 1px solid red;
@@ -27,6 +31,7 @@ class drumMachine extends React.Component {
     handleKeyPress(event){
         let audio = new Audio();
 
+        console.log(this.props.on);
         if(event.keyCode == 81 || arguments[1] == "Q"){
             audio.src = kick;
         }  else if (event.keyCode == 87 || arguments[1] == "W") {
@@ -72,4 +77,11 @@ class drumMachine extends React.Component {
 
 }
 
-export default drumMachine;
+
+const mapStateToProps = (state) => {
+    return {
+        on: state.padOn
+    };
+};
+
+export default connect(mapStateToProps)(drumMachine);
