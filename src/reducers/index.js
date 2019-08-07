@@ -9,44 +9,39 @@ const defaultState = {
 const ioReducer = (state = defaultState, action) => {
     switch(action.type) {
     case 'TURNON':
-        state = {
-            padOn: true,
-            message: "ON"
-        };
+        state = {...state, padOn: true};
         return state;
         break;
         
     case 'TURNOFF': 
-        state = {
-            padOn: false,
-            message: "ON"
-        };
+    
+        state = {...state, padOn: false};
+
         return state;
         break;
         
     default: 
-        return state;
+        return defaultState;
         break;
 
     };
 };
 
+//Reducer for displaying the sound that was played
 const displaySoundReducer = (state = defaultState, action) => {
     
     switch (action.type){
         case 'DISPLAY_SOUND':
-            state = { 
-               message: action.message
-            };
+            state = {...state, soundPlayed: action.message};
             return state;
-        
+            
         default: 
             return defaultState;
     }
 };
 
 const rootReducer = combineReducers({
-    ioReducer,
-    displaySoundReducer
+    turnDrumPadOn: ioReducer,
+    showSound: displaySoundReducer
 });
 export default rootReducer;

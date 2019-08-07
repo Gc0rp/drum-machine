@@ -7,6 +7,8 @@ import kick from '../audio/kick.mp3';
 import clap from '../audio/clap.wav';
 import snare from '../audio/snare.wav';
 
+import {displaySound} from '../actions/displaySound';
+
 const Column = styled.div`
     border: 1px solid red;
 `;
@@ -28,20 +30,26 @@ class drumMachine extends React.Component {
     
     handleKeyPress(event){
 
-        console.log(this.props);
         if(this.props.padOn) {
 
             let audio = new Audio();
             
             if(event.keyCode === 81 || arguments[1] === "Q"){
                 audio.src = kick;
+                this.props.displaySound("kick");
             }  else if (event.keyCode === 87 || arguments[1] === "W") {
                 audio.src = clap;
+                this.props.displaySound("snare");
             } else if (event.keyCode === 69 || arguments[1] === "E") {
                 audio.src = snare;
+                this.props.displaySound("clap");
             }
             
             audio.play();
+            
+            setTimeout( () => {
+                this.props.displaySound(" ");
+            }, 1000);
         }
         
     }
@@ -79,11 +87,19 @@ class drumMachine extends React.Component {
 
 }
 
-
 const mapStateToProps = (state) => {
     return {
-        padOn: state.padOn
+        padOn: state.turnDrumPadOn.padOn,
+        soundPlayed: state.showSound.soundPlayed
     };
 };
 
-export default connect(mapStateToProps)(drumMachine);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        displaySound: (message) => {
+            dispatch(displaySound(message));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(drumMachine);

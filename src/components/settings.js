@@ -99,8 +99,8 @@ class Settings extends React.Component {
 
 const connectStateToProps = (state) => {
     return {
-        padOn: state.padOn,
-        message: state.soundPlayed
+        padOn: state.turnDrumPadOn.padOn,
+        message: state.showSound.soundPlayed
     };
 };
 
