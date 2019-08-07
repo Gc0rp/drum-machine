@@ -1,21 +1,25 @@
 import { combineReducers } from 'redux';
 
 const defaultState = {
-    padOn: true
+    padOn: true,
+    soundPlayed: ""
 };
 
-const rootReducer = (state = defaultState, action) => {
+// Reducer for on and off buttons
+const ioReducer = (state = defaultState, action) => {
     switch(action.type) {
     case 'TURNON':
         state = {
-            padOn: true
+            padOn: true,
+            message: "ON"
         };
         return state;
         break;
         
     case 'TURNOFF': 
         state = {
-            padOn: false
+            padOn: false,
+            message: "ON"
         };
         return state;
         break;
@@ -25,6 +29,24 @@ const rootReducer = (state = defaultState, action) => {
         break;
 
     };
-}
+};
 
+const displaySoundReducer = (state = defaultState, action) => {
+    
+    switch (action.type){
+        case 'DISPLAY_SOUND':
+            state = { 
+               message: action.message
+            };
+            return state;
+        
+        default: 
+            return defaultState;
+    }
+};
+
+const rootReducer = combineReducers({
+    ioReducer,
+    displaySoundReducer
+});
 export default rootReducer;

@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+ 
+import { TURNOFF } from '../actions/turnoff';
+import { TURNON }from '../actions/turnon';
 
 const Column = styled.div`
     border: 1px solid red;
@@ -33,9 +35,11 @@ class Settings extends React.Component {
     }
 
     handleClick(){
-        console.log(this.props);
-
-        this.props.turnPadOff();
+        if(this.props.padOn) {
+            this.props.turnPadOff();
+        } else {
+            this.props.turnPadOn();
+        }
     }
 
     render(){
@@ -45,7 +49,7 @@ class Settings extends React.Component {
                     <div className="col-md-12">
                         <div className="btn-group">
                             <label className="btn btn-primary">
-                                <input type="radio" name="options" id="turnOn" onClick={this.handleClick}/> On 
+                                <input type="radio" name="options" id="turnOn" onClick={this.handleClick} defaultChecked/> On 
                             </label>   
 
                             <label className="btn btn-primary">
@@ -60,7 +64,7 @@ class Settings extends React.Component {
                     <div className="col-md-12">
                         
                         <DisplaySound>
-                            <p>Test</p>
+                            <p>{this.props.message}</p>
                         </DisplaySound>
                     </div>
                 </div>
@@ -95,14 +99,18 @@ class Settings extends React.Component {
 
 const connectStateToProps = (state) => {
     return {
-        padOn: state.padOn
+        padOn: state.padOn,
+        message: state.soundPlayed
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         turnPadOff: () => {
-            dispatch({type: 'TURNOFF'});
+            dispatch(TURNOFF());
+        },
+        turnPadOn: () => {
+            dispatch(TURNON());
         }
     };
 };

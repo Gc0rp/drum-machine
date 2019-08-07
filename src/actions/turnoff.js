@@ -1,9 +1,7 @@
-const TURNOFF = 'TURNOFF';
+const turnOff = 'TURNOFF';
 
-const turnOff = () => {
+export const TURNOFF = () => {
     return {
-        type: TURNOFF
+        type: turnOff
     };
 };
-
-export default turnOff;

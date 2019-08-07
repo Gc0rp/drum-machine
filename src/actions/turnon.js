@@ -1,9 +1,7 @@
-const TURNON = "TURNON";
+const turnOn = "TURNON";
 
-const turnOn = () => {
+export const TURNON = () => {
     return {
-        type: TURNON
+        type: turnOn
     };
 };
-
-export default turnOn;
