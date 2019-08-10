@@ -34,6 +34,7 @@ class drumMachine extends React.Component {
 
             let audio = new Audio();
             
+            audio.volume = 0.6;
             if(event.keyCode === 81 || arguments[1] === "Q"){
                 audio.src = kick;
                 this.props.displaySound("kick");
@@ -88,9 +89,11 @@ class drumMachine extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
         padOn: state.turnDrumPadOn.padOn,
-        soundPlayed: state.showSound.soundPlayed
+        soundPlayed: state.showSound.soundPlayed,
+        adjustVolume: state.volumeNumber.volumeControl
     };
 };
 

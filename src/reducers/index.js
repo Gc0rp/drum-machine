@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 
 const defaultState = {
     padOn: true,
-    soundPlayed: ""
+    soundPlayed: "",
+    volumeControl: 0
 };
 
 // Reducer for on and off buttons
@@ -27,21 +28,37 @@ const ioReducer = (state = defaultState, action) => {
     };
 };
 
-//Reducer for displaying the sound that was played
+// Reducer for displaying the sound that was played
 const displaySoundReducer = (state = defaultState, action) => {
     
     switch (action.type){
-        case 'DISPLAY_SOUND':
-            state = {...state, soundPlayed: action.message};
-            return state;
+    case 'DISPLAY_SOUND':
+        state = {...state, soundPlayed: action.message};
+        return state;
             
-        default: 
-            return defaultState;
+    default: 
+        return defaultState;
+    }
+};
+
+// Reducer for changing volume
+
+const volumeControl = (state = defaultState, action) => {
+    
+    switch(action.type){
+    case 'CHANGE_VOLUME':
+        state = {...state, volumeNumber: action.volumeNumber};
+        return state;
+    
+    default: 
+        return defaultState;
+
     }
 };
 
 const rootReducer = combineReducers({
     turnDrumPadOn: ioReducer,
-    showSound: displaySoundReducer
+    showSound: displaySoundReducer,
+    volumeNumber : volumeControl
 });
 export default rootReducer;

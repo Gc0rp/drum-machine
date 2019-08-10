@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
  
 import { TURNOFF } from '../actions/turnoff';
 import { TURNON }from '../actions/turnon';
+import { volumeControl } from '../actions/volume';
 
 const Column = styled.div`
     border: 1px solid red;
@@ -32,6 +33,7 @@ class Settings extends React.Component {
         };
 
         this.handleClick = this.handleClick.bind(this);
+        this.changeVolume = this.changeVolume.bind(this);
     }
 
     handleClick(){
@@ -40,6 +42,10 @@ class Settings extends React.Component {
         } else {
             this.props.turnPadOn();
         }
+    }
+
+    changeVolume(event){
+        this.props.adjustVolume(event.target.value);
     }
 
     render(){
@@ -72,7 +78,8 @@ class Settings extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         <label htmlFor="volume-slider">volume</label>
-                        <input type="range" className="custom-range" min="0" max="100" id="volume-range"/>
+                        <input type="range" className="custom-range" min="0" 
+                            max="100" id="volume-range" onChange={this.changeVolume} value={(this.props.adjustVolume).toString}/>
                     </div>
                 </div>
 
@@ -100,7 +107,8 @@ class Settings extends React.Component {
 const connectStateToProps = (state) => {
     return {
         padOn: state.turnDrumPadOn.padOn,
-        message: state.showSound.soundPlayed
+        message: state.showSound.soundPlayed,
+        adjustVolume: state.volumeNumber.volumeControl
     };
 };
 
@@ -111,6 +119,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         turnPadOn: () => {
             dispatch(TURNON());
+        },
+        adjustVolume: () => {
+            dispatch(volumeControl());
         }
     };
 };
