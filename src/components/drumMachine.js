@@ -10,7 +10,7 @@ import snare from '../audio/snare.wav';
 import {displaySound} from '../actions/displaySound';
 
 const Column = styled.div`
-    border: 1px solid red;
+    
 `;
 
 class drumMachine extends React.Component {
@@ -37,7 +37,8 @@ class drumMachine extends React.Component {
             audio.volume = 0.6;
             if(event.keyCode === 81 || arguments[1] === "Q"){
                 audio.src = kick;
-                this.props.displaySound("kick");
+                console.log(this.props);
+                this.props.displaySound("kick", this.props.adjustVolume);
             }  else if (event.keyCode === 87 || arguments[1] === "W") {
                 audio.src = clap;
                 this.props.displaySound("snare");
@@ -47,9 +48,9 @@ class drumMachine extends React.Component {
             }
             
             audio.play();
-            
+            console.log(this.props);
             setTimeout( () => {
-                this.props.displaySound(" ");
+                this.props.displaySound(" ", this.props.adjustVolume);
             }, 1000);
         }
         
@@ -89,7 +90,6 @@ class drumMachine extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         padOn: state.turnDrumPadOn.padOn,
         soundPlayed: state.showSound.soundPlayed,
@@ -99,8 +99,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        displaySound: (message) => {
-            dispatch(displaySound(message));
+        displaySound: (message, volume) => {
+            dispatch(displaySound(message, volume));
         }
     };
 };

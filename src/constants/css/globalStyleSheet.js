@@ -10,7 +10,6 @@ const GlobalStyleSheet = `
     }
     .container-fluid {
         width: 75%;
-        outline: 4px solid black;
         margin-top: 5%;
     }
 
@@ -24,7 +23,6 @@ const GlobalStyleSheet = `
     }
 
     .row{
-        border: 1px solid blue;
         justify-content: center;
     }
 
@@ -43,7 +41,6 @@ const GlobalStyleSheet = `
 
     .btn-primary:hover{
         background-color: #F49D6E;
-        border: 1px solid #F49D6E;
     }
 
 `;

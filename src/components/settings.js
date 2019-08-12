@@ -8,7 +8,6 @@ import { TURNON }from '../actions/turnon';
 import { volumeControl } from '../actions/volume';
 
 const Column = styled.div`
-    border: 1px solid red;
     text-align: center;
 `;
 
@@ -16,11 +15,11 @@ const DisplaySound = styled.div`
 
     background-color: white;
     min-width: 80px;
-    max-width: 80px;
+    max-width: auto;
     min-height: 50px;
     text-align: center;
-    margin: auto;
-    margin-top: 20px;
+    margin: 20px;
+    border-radius: 5px;
 `;
 
 class Settings extends React.Component {
@@ -70,7 +69,7 @@ class Settings extends React.Component {
                     <div className="col-md-12">
                         
                         <DisplaySound>
-                            <p>{this.props.message}</p>
+                            <h3><b>{this.props.message}</b></h3>
                         </DisplaySound>
                     </div>
                 </div>
@@ -79,7 +78,7 @@ class Settings extends React.Component {
                     <div className="col-md-12">
                         <label htmlFor="volume-slider">volume</label>
                         <input type="range" className="custom-range" min="0" 
-                            max="100" id="volume-range" onChange={this.changeVolume} value={(this.props.adjustVolume).toString}/>
+                            max="100" id="volume-range" onChange={this.changeVolume} value={this.props.volumeChanged}/>
                     </div>
                 </div>
 
@@ -108,7 +107,7 @@ const connectStateToProps = (state) => {
     return {
         padOn: state.turnDrumPadOn.padOn,
         message: state.showSound.soundPlayed,
-        adjustVolume: state.volumeNumber.volumeControl
+        volumeChanged: state.volumeNumber.volumeControl
     };
 };
 
@@ -120,9 +119,9 @@ const mapDispatchToProps = (dispatch) => {
         turnPadOn: () => {
             dispatch(TURNON());
         },
-        adjustVolume: () => {
-            dispatch(volumeControl());
-        }
+        adjustVolume: (v) => {
+            dispatch(volumeControl(v));
+        }  
     };
 };
 export default connect(connectStateToProps, mapDispatchToProps)(Settings);

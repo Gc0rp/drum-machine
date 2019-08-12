@@ -15,9 +15,7 @@ const ioReducer = (state = defaultState, action) => {
         break;
         
     case 'TURNOFF': 
-    
         state = {...state, padOn: false};
-
         return state;
         break;
         
@@ -33,7 +31,9 @@ const displaySoundReducer = (state = defaultState, action) => {
     
     switch (action.type){
     case 'DISPLAY_SOUND':
-        state = {...state, soundPlayed: action.message};
+        console.log(action);
+        state = {...state, volumeControl:action.volume, soundPlayed: action.message};
+        console.log(state);
         return state;
             
     default: 
@@ -42,17 +42,16 @@ const displaySoundReducer = (state = defaultState, action) => {
 };
 
 // Reducer for changing volume
-
 const volumeControl = (state = defaultState, action) => {
     
     switch(action.type){
     case 'CHANGE_VOLUME':
-        state = {...state, volumeNumber: action.volumeNumber};
+        console.log("in change volume");
+        state = {...state, volumeControl: action.volumeControl};
         return state;
     
     default: 
         return defaultState;
-
     }
 };
 
