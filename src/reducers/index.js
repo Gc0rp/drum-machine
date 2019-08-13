@@ -20,7 +20,8 @@ const ioReducer = (state = defaultState, action) => {
         break;
         
     default: 
-        return defaultState;
+        
+        return state;
         break;
 
     };
@@ -32,12 +33,14 @@ const displaySoundReducer = (state = defaultState, action) => {
     switch (action.type){
     case 'DISPLAY_SOUND':
         console.log(action);
-        state = {...state, volumeControl:action.volume, soundPlayed: action.message};
+        state = {...state, soundPlayed: action.message};
         console.log(state);
         return state;
             
-    default: 
-        return defaultState;
+    default:
+        console.log("in default"); 
+        console.log(state);
+        return state;
     }
 };
 
@@ -51,7 +54,8 @@ const volumeControl = (state = defaultState, action) => {
         return state;
     
     default: 
-        return defaultState;
+        console.log(state);
+        return state;
     }
 };
 
