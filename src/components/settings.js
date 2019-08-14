@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { TURNOFF } from '../actions/turnoff';
 import { TURNON }from '../actions/turnon';
 import { volumeControl } from '../actions/volume';
+import { PIANO } from '../actions/piano'; 
+import { DRUM } from '../actions/drum';
 
 const Column = styled.div`
     text-align: center;
@@ -47,6 +49,7 @@ class Settings extends React.Component {
         this.props.adjustVolume(event.target.value);
     }
 
+
     render(){
         return(
             <Column className="col-lg-6">
@@ -54,11 +57,11 @@ class Settings extends React.Component {
                     <div className="col-md-12">
                         <div className="btn-group">
                             <label className="btn btn-primary">
-                                <input type="radio" name="options" id="turnOn" onClick={this.handleClick} defaultChecked/> On 
+                                <input type="radio" name="io" id="turnOn" onClick={this.handleClick} defaultChecked/> On 
                             </label>   
 
                             <label className="btn btn-primary">
-                                <input type="radio" name="options" id="turnOff" onClick={this.handleClick}/> Off 
+                                <input type="radio" name="io" id="turnOff" onClick={this.handleClick}/> Off 
                             </label>   
                     
                         </div>
@@ -86,11 +89,11 @@ class Settings extends React.Component {
                     <div className="col-md-12">
                         <div className="btn-group">
                             <label className="btn btn-primary">
-                                <input type="radio" name="options" id="piano" /> Piano 
+                                <input type="radio" name="pNd" id="piano" onClick={this.props.pianoMode}/> Piano 
                             </label>   
 
                             <label className="btn btn-primary">
-                                <input type="radio" name="options" id="drums" /> Drums 
+                                <input type="radio" name="pNd" id="drums" onClick={this.props.drumMode} defaultChecked/> Drums 
                             </label>   
                     
                         </div>
@@ -107,7 +110,8 @@ const connectStateToProps = (state) => {
     return {
         padOn: state.turnDrumPadOn.padOn,
         message: state.showSound.soundPlayed,
-        volumeChanged: state.volumeNumber.volumeControl
+        volumeChanged: state.volumeNumber.volumeControl,
+        currentMode: state.machineMode.mode
     };
 };
 
@@ -121,7 +125,13 @@ const mapDispatchToProps = (dispatch) => {
         },
         adjustVolume: (v) => {
             dispatch(volumeControl(v));
-        }  
+        },
+        pianoMode: () => {
+            dispatch(PIANO());
+        },
+        drumMode: () => {
+            dispatch(DRUM());
+        } 
     };
 };
 export default connect(connectStateToProps, mapDispatchToProps)(Settings);

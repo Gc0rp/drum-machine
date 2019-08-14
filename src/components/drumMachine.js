@@ -11,6 +11,7 @@ import crash from '../audio/crash.wav';
 import breakfill from '../audio/breakfill.wav';
 import perc from '../audio/perc.wav';
 import tomfill from '../audio/tomfill.wav';
+import fx from '../audio/fx.wav';
 
 import {displaySound} from '../actions/displaySound';
 
@@ -34,7 +35,7 @@ class drumMachine extends React.Component {
     }
     
     handleKeyPress(event){
-
+        console.log(this.props.currentMode);
         if(this.props.padOn == true) {
 
             let audio = new Audio();
@@ -66,6 +67,9 @@ class drumMachine extends React.Component {
             } else if (event.keyCode === 88 || arguments[1] === "X") {
                 audio.src = tomfill;
                 this.props.displaySound("Tom Fill");
+            } else if (event.keyCode === 67 || arguments[1] === "C") {
+                audio.src = fx;
+                this.props.displaySound("FX");
             }
             
             audio.play();
@@ -114,7 +118,8 @@ const mapStateToProps = (state) => {
     return {
         padOn: state.turnDrumPadOn.padOn,
         soundPlayed: state.showSound.soundPlayed,
-        adjustVolume: state.volumeNumber.volumeControl
+        adjustVolume: state.volumeNumber.volumeControl,
+        currentMode: state.machineMode.mode
     };
 };
 

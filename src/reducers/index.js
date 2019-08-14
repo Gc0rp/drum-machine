@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 const defaultState = {
     padOn: true,
     soundPlayed: "",
-    volumeControl: 0
+    volumeControl: 0,
+    mode: 'DRUMMODE'
 };
 
 // Reducer for on and off buttons
@@ -59,9 +60,28 @@ const volumeControl = (state = defaultState, action) => {
     }
 };
 
+const mode = (state = defaultState, action) => {
+
+    switch(action.type) {
+    case 'PIANOMODE':
+        console.log('in piano');
+        state = {...state, mode: 'PIANOMODE'};
+        return state;
+        
+    case 'DRUMMODE':
+        state = {...state, mode:'DRUMMODE'};
+        return state; 
+        
+    default: 
+        return state;
+        
+    }
+};
+
 const rootReducer = combineReducers({
     turnDrumPadOn: ioReducer,
     showSound: displaySoundReducer,
-    volumeNumber : volumeControl
+    volumeNumber : volumeControl,
+    machineMode: mode
 });
 export default rootReducer;
