@@ -13,7 +13,7 @@ const GlobalStyleSheet = `
         margin-top: 5%;
     }
 
-    .pad-button {
+    .drum-pad {
         width: 80px;
         height: 80px;
         background-color: #2C2C54;

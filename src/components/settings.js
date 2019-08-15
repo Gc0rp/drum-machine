@@ -71,7 +71,7 @@ class Settings extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         
-                        <DisplaySound>
+                        <DisplaySound id="display">
                             <h3><b>{this.props.message}</b></h3>
                         </DisplaySound>
                     </div>
@@ -79,7 +79,7 @@ class Settings extends React.Component {
 
                 <div className="row">
                     <div className="col-md-12">
-                        <label htmlFor="volume-slider">volume</label>
+                        <label htmlFor="volume-slider" style={{color: "white", fontWeight: "bold"}}>Volume</label>
                         <input type="range" className="custom-range" min="0" 
                             max="100" id="volume-range" onChange={this.changeVolume} value={this.props.volumeChanged}/>
                     </div>
