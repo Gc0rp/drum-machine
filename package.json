@@ -1,7 +1,7 @@
 {
-    "name": "react-bolt",
+    "name": "drum-machine",
     "version": "1.0.0",
-    "description": "⚡ The most simple & robust boilerplate for your React projects.",
+    "description": "Drum & piano pad for simple beats",
     "main": "src/index.js",
     "husky": {
         "precommit": "yarn run lint && yarn test --no-verify",
@@ -15,7 +15,9 @@
         "test": "jest",
         "test:watch": "yarn run test --watch",
         "test:cover": "yarn run test --coverage",
-        "cypress:open": "cypress open"
+        "cypress:open": "cypress open",
+        "predeploy": "yarn run build",
+        "deploy": "gh-pages -d build"
     },
     "keywords": [
         "react",
@@ -26,16 +28,16 @@
         "starter",
         "boilerplate"
     ],
-    "author": "Leonardo Maldonado <leonardomso11@gmail.com>",
+    "author": "Oj",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/leonardomso/react-bolt.git"
+        "url": "git+https://github.com/Gc0rp/drum-machine.git"
     },
     "bugs": {
-        "url": "https://github.com/leonardomso/react-bolt/issues"
+        "url": "https://github.com/Gc0rp/drum-machine/issues"
     },
-    "homepage": "https://github.com/leonardomso/react-bolt#readme",
+    "homepage": "https://github.com/Gc0rp/drum-machine#readme",
     "devDependencies": {
         "@babel/cli": "^7.4.3",
         "@babel/core": "^7.4.3",
@@ -90,6 +92,7 @@
     },
     "dependencies": {
         "cross-env": "^5.2.0",
+        "gh-pages": "^2.1.1",
         "prop-types": "^15.7.2",
         "react": "^16.8.6",
         "react-audio-player": "^0.11.1",
